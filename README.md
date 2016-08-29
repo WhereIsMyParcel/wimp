@@ -3,7 +3,7 @@ Wimp is an advanced parcel tracking system based on World Wind platform. WIMP is
 
 
 INSTALLING:
-1) Execute the database.sql script in the folder Database(.sql) in a MySql database running in localhost at 3306 port with username: root, password: "" . It will be implemented that can be reached database from anywhere.
+1) Execute the database.sql script in the folder Database(.sql) in a MySql database running in localhost at 3306 port with username: root, password: "" . It will be implemented that can be reached database from anywhere. <br/>
 2) Create a folder called wimp in Tomcat webapps folder.
 3) In wimp folder paste all files and folders from WIMP GitHub Source Code.
 4) Run Tomcat
