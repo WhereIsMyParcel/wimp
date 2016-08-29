@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	 version="3.1">
+    <!--Servlets tracking-->
+    <servlet>
+        <servlet-name>trackingCode</servlet-name>
+        <servlet-class>tracking.servlet.TrackingCode</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>parcel</servlet-name>
+        <servlet-class>tracking.servlet.Parcel</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>places</servlet-name>
+        <servlet-class>tracking.servlet.Places</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>routing</servlet-name>
+        <servlet-class>tracking.servlet.Routing</servlet-class>
+    </servlet>
+    <!--END Servlets tracking-->
+    
+    <!--Servlets insert-->
+    <servlet>
+        <servlet-name>courier</servlet-name>
+        <servlet-class>servlet.insert.Courier</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>sender</servlet-name>
+        <servlet-class>servlet.insert.Sender</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>recipient</servlet-name>
+        <servlet-class>servlet.insert.Recipient</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>insertParcel</servlet-name>
+        <servlet-class>servlet.insert.Parcel</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>path</servlet-name>
+        <servlet-class>servlet.insert.Path</servlet-class>
+    </servlet>
+    <!--END Servlets insert-->
+    
+    <!--''''''''''''''''''''''''''''''''''''''-->
+    
+    <!--Servlets tracking Mapping-->
+    <servlet-mapping>
+        <servlet-name>trackingCode</servlet-name>
+        <url-pattern>/trackingCode</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>parcel</servlet-name>
+        <url-pattern>/parcel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>places</servlet-name>
+        <url-pattern>/places</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>routing</servlet-name>
+        <url-pattern>/routing</url-pattern>
+    </servlet-mapping>
+    <!--END Servlets tracking Mapping-->
+    <!--Servlets insert Mapping-->
+    <servlet-mapping>
+        <servlet-name>courier</servlet-name>
+        <url-pattern>/insert/courier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>sender</servlet-name>
+        <url-pattern>/insert/sender</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>recipient</servlet-name>
+        <url-pattern>/insert/recipient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>insertParcel</servlet-name>
+        <url-pattern>/insert/parcel</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>path</servlet-name>
+        <url-pattern>/insert/path</url-pattern>
+    </servlet-mapping>
+    <!--END Servlets insert Mapping-->
+</web-app>
