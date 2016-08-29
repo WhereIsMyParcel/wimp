@@ -1,0 +1,148 @@
+
+@font-face {
+    font-family: "SouciSansNF";
+    src: url("../fonts/SouciSansNF.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto.ttf") format("truetype");
+}
+
+/*Clearable Input*/
+.clearable{
+    background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTCtCgrAAAABL0lEQVQ4T+2TzUrDQBSFM2+S310Fda0FkS5qVYoufDClzyDU5+quBmywmo1+p97IdDJqXeuBQzL3nnOYyc0k/0iKojjJsuw+z/NTK4VwaKbwAd2x1eJQGHyGb3BN6NhanyDkmvqraeqqqvat1Yd2ZsKODbUJLSeyviGs9TWsbzfmGHRMRGvfAJuyLM95KuzF77Gu6R2YPQ5EY4UExlYMatr9yGzfQ8fEtBXqk7BlmqZDk+8Ep2OGu7Kw5rdhQnQAXSDU9DWo3WBhWwPwSW9l0/8RDvEV7A1ADGotn+VCng9rBAinCLuftjNuBsDzjHUY+sROv74tCOaBwR+A41ZMqIXfdWb9PhAfIXiUkPc69p/Ru6S3srAFmj1rxaG7ieEO8aGVQjgdE87QDaz2d5Ek70oSqDkD3eYIAAAAAElFTkSuQmCC)
+                no-repeat right -20px center;
+    padding-right: 30px;
+    transition: background 0.5s;
+}
+.clearable.x  { 
+    background-position: right 6px center;
+}
+.clearable.onX{ 
+    cursor: pointer; 
+}
+.clearable::-ms-clear {
+    display: none; width:0; height:0;
+}
+/*END Clearable Input*/
+
+/*Alert*/
+.alert{
+    margin-left: 10px;
+}
+
+.loading{
+    margin: -3px 2px -6px 0px;
+    width: 40px; 
+    height: 40px;
+}
+/*END Alert & loading*/
+
+/*Panel Color*/
+/*Courier*/
+    .pnlCourier{
+        border-color: #089de3!important;
+    }
+    .panel > .pnlCourier,
+    .btnCourier{
+        background-image: none;
+        background-color: #089de3!important;
+        border-color: #089de3!important;
+    }
+    .btnCourier:hover{
+        background-color: #078cca!important;
+        border-color: #078cca!important;
+    }
+    .btnCourier:active{
+        background-color: #067bb2!important;
+        border-color: #067bb2!important;
+    }
+/*END Courier*/
+/*Sender*/
+    .pnlSender{
+        border-color: #2ca5b9!important;
+    }
+    .panel > .pnlSender,
+    .btnSender{
+        background-image: none;
+        background-color: #2ca5b9!important;
+        border-color: #2ca5b9!important;
+    }
+    .btnSender:hover{
+        background-color: #2794a6!important;
+        border-color: #2794a6!important;
+    }
+    .btnSender:active{
+        background-color: #238494!important;
+        border-color: #238494!important;
+    }
+/*END Sender*/
+/*Recipient*/
+    .pnlRecipient{
+        border-color: #9CB806!important;
+    }
+    .panel > .pnlRecipient,
+    .btnRecipient{
+        background-image: none;
+        background-color: #9CB806!important;
+        border-color: #9CB806!important;
+    }
+    .btnRecipient:hover{
+        background-color: #8ca505!important;
+        border-color: #8ca505!important;
+    }
+    .btnRecipient:active{
+        background-color: #7c9304!important;
+        border-color: #7c9304!important;
+    }
+/*END Recipient*/
+/*Parcel*/
+    .pnlParcel{
+        border-color: #F89C12!important;
+    }
+    .panel > .pnlParcel,
+    .btnParcel{
+        background-image: none;
+        background-color: #F89C12!important;
+        border-color: #F89C12!important;
+    }
+    .btnParcel:hover{
+        background-color: #df8c10!important;
+        border-color: #df8c10!important;
+    }
+    .btnParcel:active{
+        background-color: #c67c0e!important;
+        border-color: #c67c0e!important;
+    }
+/*END Parcel*/
+/*Path*/
+    .pnlPath{
+        border-color: #F23C06!important;
+    }
+    .panel > .pnlPath,
+    .btnPath{
+        background-image: none;
+        background-color: #F23C06!important;
+        border-color: #F23C06!important;
+    }
+    .btnPath:hover{
+        background-color: #d93605!important;
+        border-color: #d93605!important;
+    }
+    .btnPath:active{
+        background-color: #c13004!important;
+        border-color: #c13004!important;
+    }
+/*END Path*/
+/*END Panel Color*/
+
+
+.modal-header{
+    /*font-family: SouciSansNF;*/
+    color: #f0ad4e;
+}
+.modal-body{
+    font-family: Roboto;
+    font-size: 1.5em;
+    font-weight: bold;
+}

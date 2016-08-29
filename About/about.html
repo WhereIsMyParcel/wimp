@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>About!</title>
+        <link rel="icon" href="../icon.ico">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--PACE.JS-->
+        <link rel="stylesheet" href="../paceJs/themes/blue/pace-theme-minimal.css">
+        <script src="../paceJs/pace.js" type="text/javascript"></script>
+        <!--END PACE.JS-->
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!--END BOOTSTRAP-->
+        
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="styleAbout.css">
+        <script src="../script.js" type="text/javascript"></script>
+        <script src="scriptAbout.js" type="text/javascript"></script>
+    </head>
+    <body>  
+        <div class="scrollbar">
+        <div id="wrapper">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navBar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand notALink">
+                            <img alt="Wimp" src="../images/logoWimp.png" style="display: inline; margin-bottom: 4px!important;" width="20" height="20"> Wimp
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navBar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="../index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li><a href="../Insert/insert.html"><span class="glyphicon glyphicon-th-large"></span> Insert</a></li>
+                            <li class="active"><a href="about.html"><span class="glyphicon glyphicon-leaf"></span> About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="container-fluid">
+                <div class="panel panel-primary pnlWimpDescription">
+                    <div class="panel-heading pnlWimpDescription"><span class="glyphicon glyphicon-asterisk"></span> What is Wimp?</div>
+                    <div class="panel-body">
+                        Wimp is an advanced parcel tracking system based on World Wind platform. 
+                        WIMP is designed to work with shipping companies(to collect shipping data) and private users (customers) 
+                        to provide a detailed report of the shipment in progress with a powerful user-friendly interface and the 
+                        interactive World Wind's globe that can help to understand the actual shipping status with the latest information obtained from the database. 
+                        <br/>
+                        New information about the shipping status is managed by a Web Service that automatically updates the shipment's location in World Wind. 
+                        <br/>
+                        WIMP works with all typical platforms (mobile devices included) having an internet connection.
+                    </div>
+                </div>
+                
+                <div class="panel panel-primary pnlGuide">
+                    <div class="panel-heading pnlGuide"><span class="glyphicon glyphicon-education"></span> How to WIMP!</div>
+                    <div class="panel-body">
+                        <kbd>Step 1:</kbd> Go to Wimp <a href="../index.html">home page !</a><br/>
+                        <kbd>Step 2:</kbd> Insert your tracking code in the “Tracking Code” search bar and press enter. (You can find some samples of codes in the info note below the search bar)<br/>
+                        <kbd>Step 3:</kbd> Enjoy all your informations about the parcel: weight, courrier, sender, recipient and much more!<br/>
+                        If you need to know more about our project scroll this page. Here you can find our project’s descriprion, guide, video sample, screenshots, third party components, source code on GitHub that had been used and all members’ name.
+                        <br/><kbd>PDF guide of search page:</kbd> <a href="Wimp_Guide.pdf" target="_blank"><img src="../images/guidePdf.png" style="width: 35px; height: 45px;"/></a>
+                    </div>
+                </div>
+                
+                <div class="panel panel-primary pnlVideo">
+                    <div class="panel-heading pnlVideo"><span class="glyphicon glyphicon-film"></span> Video presentation</div>
+                    <div class="panel-body">
+                        <a href="https://youtu.be/XuaivWr1MCM" target="_blank">Go to Video <span class="glyphicon glyphicon-new-window"></span></a>
+                    </div>
+                </div>
+                
+                <div class="panel panel-primary pnlSourceCode">
+                    <div class="panel-heading pnlSourceCode"><span class="glyphicon glyphicon-qrcode"></span> Source Code</div>
+                    <div class="panel-body">
+                        <a href="https://github.com/WhereIsMyParcel/wimp.git" target="_blank">Go to Source Code on GitHub <span class="glyphicon glyphicon-new-window"></span></a>
+                    </div>
+                </div>
+                
+                <div class="panel panel-primary pnlThirdParty">
+                    <div class="panel-heading pnlThirdParty"><span class="glyphicon glyphicon-record"></span> Third Party Components</div>
+                    <div class="panel-body">
+                        This is the list of Third Party Components used to built the project: <br/>
+                        <div class="list-group" style="margin-bottom: 0px; margin-top: 5px;">
+                            <a href="http://github.hubspot.com/pace/docs/welcome" class="list-group-item" target="_blank">PACE</a>
+                            <a href="http://getbootstrap.com" class="list-group-item" target="_blank">Bootstrap</a>
+                            <a href="https://webworldwind.org" class="list-group-item" target="_blank">NASA Web World Wind</a>
+                            <a href="http://project-osrm.org" class="list-group-item" target="_blank">Project OSRM</a>
+                            <a href="http://nominatim.openstreetmap.org" class="list-group-item" target="_blank">OpneStreetMap Nominatim</a>
+                            <a href="http://bootstrap-table.wenzhixin.net.cn" class="list-group-item" target="_blank">Wenzhixin Bootstrap table</a>
+                            <a href="https://parall.ax/products/jspdf" class="list-group-item" target="_blank">jsPDF</a>
+                            <a href="https://github.com/simonbengtsson/jsPDF-AutoTable" class="list-group-item" target="_blank">jsPDF-AutoTable</a>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-primary pnlTeam">
+                    <div class="panel-heading pnlTeam"><span class="glyphicon glyphicon-user"></span> The Team</div>
+                    <div class="panel-body">
+                        Carlo Corradini - Programmer & Team Leader <br/>
+                        Michela Pezzato - Designer <br/>
+                        Miraxh Tereziu - Communication <br/>
+                        Andrea Calzetta - Communication <br/>
+                        Luca Santoro - Communication <br/>
+                        <br/>
+                        Gianvittorio Dal Prà - Mentor
+                    </div>
+                </div>
+                <br/>
+                <br/>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="container-fluid">
+                <div class="divider"></div>
+                Created by <a href="#" class="notALink"><img src="../images/logoWimp.png" class="logoWimp" data-toggle="tooltip" title="Wimp project"></a>
+                | Patrocinated with <a href="http://worldwind.arc.nasa.gov/java/" target="_blank"><img src="../images/logoNasa.png" class="logoNasa" data-toggle="tooltip" title="Nasa World Wind"></a>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>

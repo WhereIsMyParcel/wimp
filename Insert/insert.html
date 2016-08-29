@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Insert!</title>
+        <link rel="icon" href="../icon.ico">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--PACE.JS-->
+        <link rel="stylesheet" href="../paceJs/themes/blue/pace-theme-minimal.css">
+        <script src="../paceJs/pace.js" type="text/javascript"></script>
+        <!--END PACE.JS-->
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <!--END BOOTSTRAP-->
+        
+        
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="styleInsert.css">
+        <script src="../script.js" type="text/javascript"></script>
+        <script src="scriptInsert.js" type="text/javascript"></script>
+    </head>
+    <body>  
+        <div class="scrollbar">
+        <div id="wrapper">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navBar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand notALink">
+                            <img alt="Wimp" src="../images/logoWimp.png" style="display: inline; margin-bottom: 4px!important;" width="20" height="20"> Wimp
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navBar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="../index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li class="active"><a href="insert.html"><span class="glyphicon glyphicon-th-large"></span> Insert</a></li>
+                            <li><a href="../About/about.html"><span class="glyphicon glyphicon-leaf"></span> About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="container-fluid">
+                
+                <!-- Modal on Page Load -->
+                <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title"><span class="glyphicon glyphicon-alert"></span> Please use this page carefully!</h4>
+                            </div>
+                            <div class="modal-body">
+                                This page has been created only for an example purposes only. <br/>
+                                This page shows how the Database works, interacting with it. <br/>
+                                You can add additional information, create shipping, and more. <br/>
+                                <br/>
+                                Then please use this page carefully and don't 'spam' too much informations!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Got it!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Modal on Page Load -->
+                
+                <div class="row">
+                    <!--COURIER + PATH-->
+                    <div class="col-md-4">
+                        <!--COURIER-->
+                        <div class="panel panel-primary pnlCourier">
+                            <div class="panel-heading pnlCourier">
+                                <span class="glyphicon glyphicon-plane"></span>
+                                Courier:
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" onsubmit="return submitCourier()">
+                                    <div class="form-group">
+                                        <label>
+                                            <span class="glyphicon glyphicon-plane"></span>
+                                             Courier:
+                                        </label>
+                                        <input type="text" 
+                                               class="form-control clearable"
+                                               id="courierName"
+                                               placeholder="Courier name">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btnCourier"><span class="glyphicon glyphicon-open"></span> Submit</button>
+                                    
+                                    <!--Alert-->
+                                    <div class="alert alert-danger" id="errorCourier" style="display: none;"></div>
+                                    <div class="alert alert-success" id="successCourier" style="display: none;"><strong>Success!</strong> Courier inserted correctly</div>
+                                    <!--Loagin-->
+                                    <img src="../images/loading/courier.svg" class="loading pull-right" id="loadingCourier" style="display: none;"/>
+                                </form>
+                            </div>
+                        </div>
+                        <!--PATH-->
+                        <div class="panel panel-primary pnlPath">
+                            <div class="panel-heading pnlPath">
+                                <span class="glyphicon glyphicon-send"></span>
+                                Path:
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" onsubmit="return submitPath()">
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-lock"></span> Key Parcel:</label>
+                                        <input type="text" class="form-control clearable" id="ks_Parcel" placeholder="Key Parcel">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-map-marker"></span> Place:</label>
+                                        <input type="text" class="form-control clearable" id="place" placeholder="Place">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-calendar"></span> Date:</label>
+                                        <input type="text" class="form-control clearable" id="pathDate" placeholder="Date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-time"></span> Hour:</label>
+                                        <input type="text" class="form-control clearable" id="pathHour" placeholder="Hour">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-bell"></span> Note:</label>
+                                        <input type="text" class="form-control clearable" id="note" placeholder="Note">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btnPath"><span class="glyphicon glyphicon-open"></span> Submit</button>
+                                    
+                                    <!--Alert-->
+                                    <div class="alert alert-danger" id="errorPath" style="display: none;"></div>
+                                    <div class="alert alert-success" id="successPath" style="display: none;"><strong>Success!</strong> Path inserted correctly</div>
+                                    <!--Loagin-->
+                                    <img src="../images/loading/path.svg" class="loading pull-right" id="loadingPath" style="display: none;"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END COURIER + PATH-->
+                    
+                    <!--SENDER-->
+                    <div class="col-md-4">
+                        <div class="panel panel-primary pnlSender">
+                            <div class="panel-heading pnlSender">
+                                <span class="glyphicon glyphicon-user"></span>
+                                Sender:
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" onsubmit="return submitSender()">
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-user"></span> Name:</label>
+                                        <input type="text" class="form-control clearable" id="S_name" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-user"></span> Surname:</label>
+                                        <input type="text" class="form-control clearable" id="S_surname" placeholder="Surname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-home"></span> Address:</label>
+                                        <input type="text" class="form-control clearable" id="S_address" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-road"></span> City:</label>
+                                        <input type="text" class="form-control clearable" id="S_city" placeholder="City">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-map-marker"></span> Post Code:</label>
+                                        <input type="text" class="form-control clearable" id="S_postCode" placeholder="Post Code">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-flag"></span> Region:</label>
+                                        <input type="text" class="form-control clearable" id="S_region" placeholder="Region">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-phone-alt"></span> Landline:</label>
+                                        <input type="text" class="form-control clearable" id="S_landline" placeholder="Landline">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-phone"></span> Mobile Phone:</label>
+                                        <input type="text" class="form-control clearable" id="S_mobilePhone" placeholder="Mobile Phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-envelope"></span> Email:</label>
+                                        <input type="text" class="form-control clearable" id="S_email" placeholder="Email">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btnSender"><span class="glyphicon glyphicon-open"></span> Submit</button>
+                                    
+                                    <!--Alert-->
+                                    <div class="alert alert-danger" id="errorSender" style="display: none;"></div>
+                                    <div class="alert alert-success" id="successSender" style="display: none;"><strong>Success!</strong> Sender inserted correctly</div>
+                                    <!--Loagin-->
+                                    <img src="../images/loading/sender.svg" class="loading pull-right" id="loadingSender" style="display: none;"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END SENDER-->
+                    
+                    <!--RECIPIENT-->
+                    <div class="col-md-4">
+                        <div class="panel panel-primary pnlRecipient">
+                            <div class="panel-heading pnlRecipient">
+                                <span class="glyphicon glyphicon-user"></span>
+                                Recipient:
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" onsubmit="return submitRecipient()">
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-user"></span> Name:</label>
+                                        <input type="text" class="form-control clearable" id="R_name" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-user"></span> Surname:</label>
+                                        <input type="text" class="form-control clearable" id="R_surname" placeholder="Surname">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-home"></span> Address:</label>
+                                        <input type="text" class="form-control clearable" id="R_address" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-road"></span> City:</label>
+                                        <input type="text" class="form-control clearable" id="R_city" placeholder="City">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-map-marker"></span> Post Code:</label>
+                                        <input type="text" class="form-control clearable" id="R_postCode" placeholder="Post Code">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-flag"></span> Region:</label>
+                                        <input type="text" class="form-control clearable" id="R_region" placeholder="Region">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-phone-alt"></span> Landline:</label>
+                                        <input type="text" class="form-control clearable" id="R_landline" placeholder="Landline">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-phone"></span> Mobile Phone:</label>
+                                        <input type="text" class="form-control clearable" id="R_mobilePhone" placeholder="Mobile Phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-envelope"></span> Email:</label>
+                                        <input type="text" class="form-control clearable" id="R_email" placeholder="Email">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btnRecipient"><span class="glyphicon glyphicon-open"></span> Submit</button>
+                                    
+                                    <!--Alert-->
+                                    <div class="alert alert-danger" id="errorRecipient" style="display: none;"></div>
+                                    <div class="alert alert-success" id="successRecipient" style="display: none;"><strong>Success!</strong> Recipient inserted correctly</div>
+                                    <!--Loagin-->
+                                    <img src="../images/loading/recipient.svg" class="loading pull-right" id="loadingRecipient" style="display: none;"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END RECIPIENT-->
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <!--PARCEL-->
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="panel panel-primary pnlParcel">
+                            <div class="panel-heading pnlParcel">
+                                <span class="glyphicon glyphicon-send"></span>
+                                Parcel:
+                            </div>
+                            <div class="panel-body">
+                                <form role="form" onsubmit="return submitParcel()">
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-random"></span> Tracking Code:</label>
+                                        <input type="text" class="form-control clearable" id="trackingCode" placeholder="Tracking Code">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-calendar"></span> Date:</label>
+                                        <input type="text" class="form-control clearable" id="parcelDate" placeholder="Date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-time"></span> Hour:</label>
+                                        <input type="text" class="form-control clearable" id="parcelHour" placeholder="Hour">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-scale"></span> Weight:</label>
+                                        <input type="text" class="form-control clearable" id="weight" placeholder="Weight">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-lock"></span> Key Sender:</label>
+                                        <input type="text" class="form-control clearable" id="ks_Sender" placeholder="Key Sender">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-lock"></span> Key Recipient:</label>
+                                        <input type="text" class="form-control clearable" id="ks_Recipient" placeholder="Key Recipient">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><span class="glyphicon glyphicon-lock"></span> Key Courier:</label>
+                                        <input type="text" class="form-control clearable" id="ks_Courier" placeholder="Key Courier">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btnParcel"><span class="glyphicon glyphicon-open"></span> Submit</button>
+                                    
+                                    <!--Alert-->
+                                    <div class="alert alert-danger" id="errorParcel" style="display: none;"></div>
+                                    <div class="alert alert-success" id="successParcel" style="display: none;"><strong>Success!</strong> Parcel inserted correctly</div>
+                                    <!--Loagin-->
+                                    <img src="../images/loading/parcel.svg" class="loading pull-right" id="loadingParcel" style="display: none;"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END PARCEL-->
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="container-fluid">
+                <div class="divider"></div>
+                Created by <a href="#" class="notALink"><img src="../images/logoWimp.png" class="logoWimp" data-toggle="tooltip" title="Wimp project"></a>
+                | Patrocinated with <a href="http://worldwind.arc.nasa.gov/java/" target="_blank"><img src="../images/logoNasa.png" class="logoNasa" data-toggle="tooltip" title="Nasa World Wind"></a>
+            </div>
+        </div>
+        </div>
+    </body>
+</html>
