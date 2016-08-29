@@ -1,0 +1,397 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Track it!</title>
+        <link rel="icon" href="../icon.ico">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!--PACE.JS-->
+        <link rel="stylesheet" href="../paceJs/themes/blue/pace-theme-minimal.css">
+        <script src="../paceJs/pace.js" type="text/javascript"></script>
+        <!--END PACE.JS-->
+        <!--BOOTSTRAP-->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js" type="text/javascript"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" type="text/javascript"></script>
+        <!--END BOOTSTRAP-->
+        <!--TABLE BOOTSTRAP-EXTENDED-->
+        <link rel="stylesheet" href="http://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.css" />
+        <script src="http://rawgit.com/wenzhixin/bootstrap-table/master/src/bootstrap-table.js" type="text/javascript"></script>
+        <script src="http://rawgithub.com/rochal/jQuery-slimScroll/master/jquery.slimscroll.js" type="text/javascript"></script>
+        <!--END TABLE BOOTSTRAP-EXTENDED-->
+        <!--NASA WORLD WIND-->
+        <script src="http://worldwindserver.net/webworldwind/worldwindlib.js" type="text/javascript"></script>
+        <!--END NASA WORLD WIND-->
+        <!--jsPDF-AutoTable-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js" type="text/javascript"></script>
+        <script src="https://rawgit.com/someatoms/jsPDF-AutoTable/master/dist/jspdf.plugin.autotable.js" type="text/javascript"></script>
+        <!--ENDjsPDF-AutoTable-->
+        
+        
+        <link rel="stylesheet" href="../style.css">
+        <link rel="stylesheet" href="styleSearch.css">
+        <link rel="stylesheet" href="../loaderJs/css/main.css" type="text/css"/>
+        <!--Script -> bottom-->
+    </head>
+    <body>
+        <div class="scrollbar">
+        <div id="wrapper">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navBar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand notALink">
+                            <img alt="Wimp" src="../images/logoWimp.png" style="display: inline; margin-bottom: 4px!important;" width="20" height="20"> Wimp
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navBar">
+                        <ul class="nav navbar-nav">
+                            <li><a href="../index.html"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                            <li><a href="../Insert/insert.html"><span class="glyphicon glyphicon-th-large"></span> Insert</a></li>
+                            <li><a href="../About/about.html"><span class="glyphicon glyphicon-leaf"></span> About</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 col-lg-9 col-lg-push-3">
+                        <div class="container-fluid" id="tableContainer">
+                            <div id="tableToolbar">
+                                <img src="../images/toPdf.png"
+                                     onclick="toPdf()"
+                                     data-toggle="tooltip" data-placement="right" 
+                                     title="Download PDF"
+                                     style="width: 64px; height: 64px; 
+                                            margin-left: -15px; margin-top: -5px;
+                                            cursor: pointer;"
+                                />
+                            </div>
+                            <table  id="pathTable"
+                                    data-toolbar="#tableToolbar"
+                                    data-search="true"
+                                    data-show-toggle="true"
+                                    data-show-columns="true"
+                                    data-height="330"
+                                    data-sort-order="desc">
+                                <thead>
+                                    <tr>
+                                        <th data-field="date"
+                                            data-sortable="true">
+                                                <span class="glyphicon glyphicon-calendar"></span> Date
+                                        </th>
+                                        <th data-field="hour"
+                                            data-sortable="true">
+                                                <span class="glyphicon glyphicon-time"></span> Hour
+                                        </th>
+                                        <th data-field="place"
+                                            data-sortable="true">
+                                                <span class="glyphicon glyphicon-map-marker"></span> Place
+                                        </th>
+                                        <th data-field="note"
+                                            data-sortable="false">
+                                                <span class="glyphicon glyphicon-bell"></span> Note
+                                        </th>
+                                        <th data-field="goToLocation"
+                                            data-sortable="false">
+                                                <span class="glyphicon glyphicon-globe"></span> Go
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <br/>
+                    </div>
+                    
+                    <div class="col-md-12 col-lg-3 col-lg-pull-9">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-primary parcelInfo">
+                                <div class="panel-heading parcelInfo">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#parcelInfo">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                            Parcel:
+                                            <span class="glyphicon glyphicon-chevron-up pull-right bckg"></span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="parcelInfo" class="panel-collapse collapse in">
+                                    <div class="panel-body parcelInfo">
+                                        <strong><span class="glyphicon glyphicon-random"></span> Tracking Code&#58;</strong> <span id="trackingCode">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-plane"></span> Courier&#58;</strong> <span id="courier">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-calendar"></span> Shipping Date&#58;</strong> <span id="shippingDate">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-scale"></span> Weight&#58;</strong> <span id="weight">Not Found</span> <br/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-primary sender">
+                                <div class="panel-heading sender">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#senderInfo">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                            Sender:
+                                            <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="senderInfo" class="panel-collapse collapse">
+                                    <div class="panel-body sender">
+                                        <strong><span class="glyphicon glyphicon-user"></span> Name&#58;</strong> <span id="S_name">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-user"></span> Surname&#58;</strong> <span id="S_surname">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-home"></span> Address&#58;</strong> <span id="S_address">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-road"></span> City&#58;</strong> <span id="S_city">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-map-marker"></span> Post Code&#58;</strong> <span id="S_postCode">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-flag"></span> Region&#58;</strong> <span id="S_region">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-phone-alt"></span> Landline&#58;</strong> <span id="S_landline">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-phone"></span> Mobile phone&#58;</strong> <span id="S_mobilePhone">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-envelope"></span> Email&#58;</strong> <span id="S_email">Not Found</span> <br/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel panel-primary recipient">
+                                <div class="panel-heading recipient">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#recipientInfo">
+                                            <span class="glyphicon glyphicon-info-sign"></span>
+                                            Recipient:
+                                            <span class="glyphicon glyphicon-chevron-down pull-right"></span>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="recipientInfo" class="panel-collapse collapse">
+                                    <div class="panel-body recipient">
+                                        <strong><span class="glyphicon glyphicon-user"></span> Name&#58;</strong> <span id="R_name">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-user"></span> Surname&#58;</strong> <span id="R_surname">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-home"></span> Address&#58;</strong> <span id="R_address">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-road"></span> City&#58;</strong> <span id="R_city">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-map-marker"></span> Post Code&#58;</strong> <span id="R_postCode">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-flag"></span> Region&#58;</strong> <span id="R_region">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-phone-alt"></span> Landline&#58;</strong> <span id="R_landline">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-phone"></span> Mobile phone&#58;</strong> <span id="R_mobilePhone">Not Found</span> <br/>
+                                        <strong><span class="glyphicon glyphicon-envelope"></span> Email&#58;</strong> <span id="R_email">Not Found</span> <br/>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="panel panel-primary legend">
+                            <div class="panel-heading legend">
+                                <span class="glyphicon glyphicon-search"></span>
+                                Legend
+                            </div>
+                            <div class="panel-body">
+                                
+                                <div id="legendBodyToBeCovered">
+                                    <h3>Click on any marker on the map to see its infos</h3>
+                                    <img src="../images/wwd/clickOnMarker.png" style="width: 150px; height: 150px;"/>
+                                </div>
+                                
+                                <div id="legendBodyCovered" style="display: none;">
+                                    <ul class="nav nav-pills legendPills">
+                                        <li class="active"><a data-toggle="pill" href="#marker"><span class="glyphicon glyphicon-pushpin"></span> Marker</a></li>
+                                        <li><a data-toggle="pill" href="#date"><span class="glyphicon glyphicon-calendar"></span> Date</a></li>
+                                        <li><a data-toggle="pill" href="#hour"><span class="glyphicon glyphicon-time"></span> Hour</a></li>
+                                        <li><a data-toggle="pill" href="#place"><span class="glyphicon glyphicon-map-marker"></span> Place</a></li>
+                                        <li><a data-toggle="pill" href="#note"><span class="glyphicon glyphicon-bell"></span> Note</a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="marker" class="tab-pane fade in active">
+                                            <img id="markerType"/> <kbd id="markerInfo"></kbd>
+                                        </div>
+                                        <div id="date" class="tab-pane fade">
+                                            <kbd id="markerDate"></kbd>
+                                        </div>
+                                        <div id="hour" class="tab-pane fade">
+                                            <kbd id="markerHour"></kbd>
+                                        </div>
+                                        <div id="place" class="tab-pane fade">
+                                            <kbd id="markerPlace"></kbd>
+                                        </div>
+                                        <div id="note" class="tab-pane fade">
+                                            <kbd id="markerNote"></kbd>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                                    
+                    <div class="col-lg-9">
+                        <canvas id="worldMap">
+                            <div class="alert alert-danger">
+                                <strong>Warning!</strong> Your browser does not support HTML5 Canvas.
+                            </div>
+                        </canvas>
+                        <div class="alert alert-warning fade in" id="noPathFound" style="display: none;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Warning!</strong> The map cannot be displayed because no path has been found, however information found
+                        </div>
+                        
+                        <!-- Options -->
+                        <div class="modal fade" id="options" role="dialog" tabindex="-1">
+                            <div class="modal-dialog">
+                                <!-- Content-->
+                                <div class="modal-content">
+                                    <div class="modal-header" style="padding:10px 50px;">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <img src="../images/wwd/options.png" style="width: 50px; height: 50px;"/>
+                                        <h4 style="display: inline"> Options</h4>
+                                    </div>
+                                    <div class="modal-body" style="padding:15px 50px; margin-bottom: -15px;">
+                                        <!--Projection-->
+                                        <div class="panel panel-primary pnlProjection">
+                                            <div class="panel-heading pnlProjection">
+                                                <span class="glyphicon glyphicon-globe"></span> Projection
+                                                <span class="glyphicon glyphicon-info-sign pull-right" id="infoProjection"></span>
+                                            </div>
+                                            <div class="panel-body">
+                                                <!--3D-->
+                                                <span class="checkbox-label"><span class="glyphicon glyphicon-globe"></span> 3D:</span>
+                                                <div class="checkbox-switch">
+                                                    <input type="checkbox" class="input-checkbox" checked="" id="3D" value="3D">
+                                                    <div class="checkbox-animate">
+                                                            <span class="checkbox-off">OFF</span>
+                                                            <span class="checkbox-on">ON</span>
+                                                    </div>
+                                                </div>
+                                                <!--2D-->
+                                                <br/>
+                                                <span class="checkbox-label"><span class="glyphicon glyphicon-picture"></span> 2D:</span>
+                                                <div class="checkbox-switch">
+                                                    <input type="checkbox" class="input-checkbox" id="2D" value="2D">
+                                                    <div class="checkbox-animate">
+                                                            <span class="checkbox-off">OFF</span>
+                                                            <span class="checkbox-on">ON</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!--Layers-->
+                                        <div class="panel panel-primary pnlLayers">
+                                            <div class="panel-heading pnlLayers">
+                                                <span class="glyphicon glyphicon-signal"></span> Layers
+                                                <span class="glyphicon glyphicon-info-sign pull-right" id="infoLayers"></span>
+                                            </div>
+                                            <div class="panel-body">
+                                                <!--Bing Aerial with Labels-->
+                                                <span class="checkbox-label"><span class="glyphicon glyphicon-align-justify"></span> Bing Aerial with Labels:</span>
+                                                <div class="checkbox-switch">
+                                                    <input type="checkbox" class="input-checkbox" disabled="" checked="" id="bingAerialWithLabels" value="Bing Aerial with Labels">
+                                                    <div class="checkbox-animate">
+                                                            <span class="checkbox-off">OFF</span>
+                                                            <span class="checkbox-on">ON</span>
+                                                    </div>
+                                                </div>
+                                                <!--Bing Roads-->
+                                                <br/>
+                                                <span class="checkbox-label"><span class="glyphicon glyphicon-align-justify"></span> Bing Roads:</span>
+                                                <div class="checkbox-switch">
+                                                    <input type="checkbox" class="input-checkbox" id="bingRoads" value="Bing Roads">
+                                                    <div class="checkbox-animate">
+                                                            <span class="checkbox-off">OFF</span>
+                                                            <span class="checkbox-on">ON</span>
+                                                    </div>
+                                                </div>
+                                                <!--Blue Marble-->
+                                                <br/>
+                                                <span class="checkbox-label"><span class="glyphicon glyphicon-align-justify"></span> Blue Marble:</span>
+                                                <div class="checkbox-switch">
+                                                    <input type="checkbox" class="input-checkbox" id="blueMarble" value="Blue Marble">
+                                                    <div class="checkbox-animate">
+                                                            <span class="checkbox-off">OFF</span>
+                                                            <span class="checkbox-on">ON</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!--Add on-->
+                                        <div class="panel panel-primary pnlAddOn">
+                                            <div class="panel-heading pnlAddOn">
+                                                <span class="glyphicon glyphicon-tint"></span> Add on
+                                            </div>
+                                            <div class="panel-body">
+                                                <!--Controls-->
+                                                <span class="checkbox-label"><span class="glyphicon glyphicon-cog"></span> Controls:</span>
+                                                <div class="checkbox-switch">
+                                                    <input type="checkbox" class="input-checkbox" checked="" id="controls" value="View Controls">
+                                                    <div class="checkbox-animate">
+                                                            <span class="checkbox-off">OFF</span>
+                                                            <span class="checkbox-on">ON</span>
+                                                    </div>
+                                                </div>
+                                                <!--Compass-->
+                                                <br/>
+                                                <span class="checkbox-label"><span class="glyphicon glyphicon-fullscreen"></span> Compass:</span>
+                                                <div class="checkbox-switch">
+                                                    <input type="checkbox" class="input-checkbox" checked="" id="compass" value="Compass">
+                                                    <div class="checkbox-animate">
+                                                            <span class="checkbox-off">OFF</span>
+                                                            <span class="checkbox-on">ON</span>
+                                                    </div>
+                                                </div>
+                                                <!--Coordinates Display-->
+                                                <br/>
+                                                <span class="checkbox-label"><span class="glyphicon glyphicon-screenshot"></span> Coordinates:</span>
+                                                <div class="checkbox-switch">
+                                                    <input type="checkbox" class="input-checkbox" id="coordinates" value="Coordinates">
+                                                    <div class="checkbox-animate">
+                                                            <span class="checkbox-off">OFF</span>
+                                                            <span class="checkbox-on">ON</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-danger pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Exit</button>
+                                        <span class="btn btn-info pull-right" id="resetZoom" data-toggle="tooltip" title="Done" data-placement="top"><span class="glyphicon glyphicon-adjust"></span> Reset zoom</span>
+                                        <span class="btn btn-warning" id="resetView" data-toggle="tooltip" title="Done" data-placement="top"><span class="glyphicon glyphicon-eye-open"></span> Reset view</span>
+                                    </div>
+                                </div>
+                                <!--END Content-->
+                            </div>
+                        </div>
+                        <!--END Options-->
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+        
+        <div id="footer">
+            <div class="container-fluid">
+                <div class="divider"></div>
+                Created by <a href="#" class="notALink"><img src="../images/logoWimp.png" class="logoWimp" data-toggle="tooltip" title="Wimp project"></a>
+                | Patrocinated with <a href="http://worldwind.arc.nasa.gov/java/" target="_blank"><img src="../images/logoNasa.png" class="logoNasa" data-toggle="tooltip" title="Nasa World Wind"></a>
+            </div>
+        </div>
+        </div>
+        
+        <!--SCRIPT-->
+        <script src="../script.js" type="text/javascript"></script>
+        <script src="script/scriptSearch.js" type="text/javascript"></script>
+        <script src="script/wwd.js" type="text/javascript"></script>
+        <script src="script/tracking.js" type="text/javascript"></script>
+        <!--END SCRIPT-->
+    </body>
+</html>

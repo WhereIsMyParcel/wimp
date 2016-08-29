@@ -1,0 +1,248 @@
+
+@font-face {
+    font-family: "WorkSans";
+    src: url("../fonts/WorkSans.ttf") format("truetype");
+}
+
+/*BOOTSTRAP-TABLE*/
+#tableContainer{
+    padding-bottom: 10px;
+    border: 1px #FFC107 solid;
+    border-radius: 5px;
+}
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+.goToLocation{
+    width: 30px;
+    height: 30px;
+    transition-duration: 0.2s;
+}
+.goToLocation:hover{
+    cursor: pointer;
+    margin-top: -2.5px;
+    margin-bottom: -2.5px;
+    width: 35px;
+    height: 35px;
+}
+/*END BOOTSTRAP-TABLE*/
+
+#worldMap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 1px #067bb2 solid;
+    border-radius: 5px;
+}
+
+/*PANEL-COLOR*/
+/*Collapse*/
+.panel > .parcelInfo{
+    background-image: none;
+    background-color: #FF9800!important;
+}
+.panel > .sender{
+    background-image: none;
+    background-color: #F57C00!important;
+}
+.panel > .recipient{
+    background-image: none;
+    background-color: #E65100!important;
+}
+.panel-group > .parcelInfo,
+.panel-collapse > .parcelInfo{
+    border-color: #FF9800!important;
+}
+.panel-group > .sender,
+.panel-collapse > .sender{
+    border-color: #F57C00!important;
+}
+.panel-group > .recipient,
+.panel-collapse > .recipient{
+    border-color: #E65100!important;
+}
+/*Static*/
+.legend{
+    border-color: #089de3!important;
+}
+.panel > .legend{
+    background-image: none;
+    background-color: #089de3!important;
+    border-color: #089de3!important;
+}
+
+.legendPills > li.active > a,
+.legendPills > li.active > a:hover,
+.legendPills > li.active > a:focus{
+    background-color: #089de3!important;
+}
+.legendPills > li > a:hover{
+    background-color: #a2dffc!important;
+}
+
+.tab-content{
+    margin-top: 15px;
+    padding:10px;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+}
+.tab-pane{
+    height: 64px;/*Same as kbd*/
+}
+kbd{
+    font-size: 1.3em;
+    line-height: 64px; /*Same as .tab-pane*/
+}
+#legendBodyToBeCovered{
+    font-family: WorkSans;
+    padding: 5px;
+}
+/*Info only*/
+#legendBodyToBeCovered{
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+    background-color: #089de3;
+    color: white;
+}
+/*END PANEL-COLOR*/
+
+/*Checkbox-Switch*/
+.checkbox-switch {
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    text-align: left;
+    width: 64px;
+    height: 24px;
+    -webkit-border-radius: 24px;
+    border-radius: 30px;
+    line-height: 1.2;
+    font-size: 11px;
+}
+.checkbox-switch input.input-checkbox {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 64px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+}
+.checkbox-switch .checkbox-animate {
+    position: relative;
+    width: 64px;
+    height: 24px;
+    background-color: #d23643;
+    -webkit-transition: background 0.25s ease-out 0s;
+    transition: background 0.25s ease-out 0s;
+}
+.checkbox-switch .checkbox-animate:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background-color: #ae2732;
+    top: 4px;
+    left: 4px;
+    -webkit-transition: left 0.3s ease-out 0s;
+    transition: left 0.3s ease-out 0s;
+    z-index: 10;
+}
+.checkbox-switch input.input-checkbox:checked + .checkbox-animate {
+    background-color: #2ecc71;
+}
+.checkbox-switch input.input-checkbox:checked + .checkbox-animate:before {
+    left: 44px;
+    background-color: #27ae60;
+}
+.checkbox-switch .checkbox-off,
+.checkbox-switch .checkbox-on {
+    float: left;
+    color: #fff;
+    font-weight: 700;
+    padding-top: 4.8px;
+    -webkit-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+.checkbox-switch .checkbox-off {
+    margin-left: 24px;
+    opacity: 1;
+}
+.checkbox-switch .checkbox-on {
+    display: none;
+    float: right;
+    margin-right: 28px;
+    opacity: 0;
+}
+.checkbox-switch input.input-checkbox:checked + .checkbox-animate .checkbox-off {
+    display: none;
+    opacity: 0;
+}
+.checkbox-switch input.input-checkbox:checked + .checkbox-animate .checkbox-on {
+    display: block;
+    opacity: 1;
+}
+/*Label*/
+.checkbox-label{
+    font-size: 1.5em;
+}
+.checkbox-switch{
+    margin-bottom: -5px;
+}
+/*END Checkbox-Switch*/
+
+/*Modal-Panel*/
+    /*Projection*/
+    .pnlProjection{
+       border-color: #2ca5b9!important;
+    }
+    .panel > .pnlProjection{
+        background-image: none;
+        background-color: #2ca5b9!important;
+        border-color: #2ca5b9!important;
+    }
+    /*END Projection*/
+    /*Layers*/
+    .pnlLayers{
+        border-color: #F89C12!important;
+    }
+    .panel > .pnlLayers{
+        background-image: none;
+        background-color: #F89C12!important;
+        border-color: #F89C12!important;
+    }
+    /*END Layers*/
+    /*AddOn*/
+    .pnlAddOn{
+        border-color: #9CB806!important;
+    }
+    .panel > .pnlAddOn{
+        background-image: none;
+        background-color: #9CB806!important;
+        border-color: #9CB806!important;
+    }
+    /*END AddOn*/
+
+#infoLayers:hover,
+#infoProjection:hover{
+    cursor: pointer;
+}
+
+#resetView + .tooltip,
+#resetZoom + .tooltip{
+    margin-top: 0.75px;
+}
+#resetView + .tooltip > .tooltip-inner,
+#resetZoom + .tooltip > .tooltip-inner{
+    font-size: 1.5em;
+}
+/*END Modal-Panel*/
